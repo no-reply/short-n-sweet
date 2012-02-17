@@ -1,0 +1,17 @@
+This is a very simple URL resolver. Put it up at a short domain for a
+URL shortener, or add features to create a more advanced ID resolver.
+
+In the Apache config file for your host (or vhost) turn on rewrite and
+point all requests at a resolver script. Carve out exceptions for
+requests to / and /error, allowing for the index and error pages:
+ 
+  RewriteEngine on
+  RewriteMap id_map prg:/path/to/resolver.py
+  RewriteRule ^/$ index.html [L]
+  RewriteRule ^/error$ error.html [L]
+  RewriteRule ^/(*)$ ${id_map:$1} [L,QSA]
+
+Name -> Target pairs can be created in a Python interpreter for now.
+
+TODO: add web interface for shortening URIs.
+TODO: add web interface for listing existing URIs.
