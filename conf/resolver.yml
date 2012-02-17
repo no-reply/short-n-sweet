@@ -1,0 +1,6 @@
+
+base_url: resolver.achelo.us
+home_dir: /www/resolver
+
+static_pages:
+  error: error
